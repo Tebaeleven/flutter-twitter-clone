@@ -2,10 +2,17 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as model;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_twitter_clone/core/core.dart';
+import 'package:flutter_twitter_clone/core/providers.dart';
 import 'package:fpdart/fpdart.dart';
 
 // want to signup,want to get user account -> Account
 // want to access user related data -> model.Account
+final authAPIProvider = Provider((ref) {
+  final account = ref.watch(appwriteAccountProvider);
+  return AuthAPI(
+    account: account,
+  );
+});
 
 abstract class IAtuthApi {
   FutureEither<model.User> signUp({
