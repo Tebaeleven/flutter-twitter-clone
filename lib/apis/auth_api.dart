@@ -48,23 +48,23 @@ class AuthAPI implements IAtuthApi {
       return left(Failuer(e.toString(), stackTrace));
     }
   }
-  
+
   @override
   FutureEither<model.Session> login({
-      required String email,
-      required String password,
-    }) async {
-      try {
-        final session = await _account.createEmailSession(
-          email: email,
-          password: password,
-        );
-        return right(session);
-      } on AppwriteException catch (e, stackTrace) {
-        return left(
-            Failuer(e.message ?? 'some unexpected error ocurred', stackTrace));
-      } catch (e, stackTrace) {
-        return left(Failuer(e.toString(), stackTrace));
-      }
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final session = await _account.createEmailSession(
+        email: email,
+        password: password,
+      );
+      return right(session);
+    } on AppwriteException catch (e, stackTrace) {
+      return left(
+          Failuer(e.message ?? 'some unexpected error ocurred', stackTrace));
+    } catch (e, stackTrace) {
+      return left(Failuer(e.toString(), stackTrace));
+    }
   }
 }
